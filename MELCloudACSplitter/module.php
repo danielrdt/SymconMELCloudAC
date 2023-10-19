@@ -194,26 +194,40 @@ class MELCloudACSplitter extends IPSModule {
 		}
 
 		$effective = 0x0;
-		if(!is_null($power)){ $effective |= 0x1; }
-		if(!is_null($operationMode)){ $effective |= 0x2; }
-		if(!is_null($temperature)){ $effective |= 0x4; }
-		if(!is_null($fanSpeed)){ $effective |= 0x8; }
-		if(!is_null($vaneVertical)){ $effective |= 0x10; }
-		if(!is_null($vaneHorizontal)){ $effective |= 0x100; }
+		$data = array(
+			"DeviceId" => $DeviceId
+		);
+		if(!is_null($power)){ 
+			$effective |= 0x1;
+			$data["Power"] = $power;
+		}
+		if(!is_null($operationMode)){ 
+			$effective |= 0x2;
+			$data["OperationMode"] = $operationMode;
+		}
+		if(!is_null($temperature)){ 
+			$effective |= 0x4;
+			$data["SetTemperature"] = $temperature;
+		}
+		if(!is_null($fanSpeed)){ 
+			$effective |= 0x8;
+			$data["SetFanSpeed"] = $fanSpeed;
+		}
+		if(!is_null($vaneVertical)){ 
+			$effective |= 0x10;
+			$data["VaneVertical"] = $vaneVertical;
+		}
+		if(!is_null($vaneHorizontal)){ 
+			$effective |= 0x100;
+			$data["VaneHorizontal"] = $vaneHorizontal;
+		}
+
+		$data["EffectiveFlags"] = $effective;
 
 		$ch = curl_init("https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAta");
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$data = array(
-			"DeviceId" => $DeviceId,
-			"Power" => $power,
-			"OperationMode" => $operationMode,
-			"SetTemperature" => $temperature,
-			"SetFanSpeed" => $fanSpeed,
-			"VaneVertical" => $vaneVertical,
-			"VaneHorizontal" => $vaneHorizontal,
-			"EffectiveFlags" => $effective
-		);
+		
 		$data_string = json_encode($data);
 
 		$this->SendDebug("SetDevice", "Request: ".$data_string, 0);
