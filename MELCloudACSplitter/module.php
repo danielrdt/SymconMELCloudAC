@@ -167,7 +167,6 @@ class MELCloudACSplitter extends IPSModule {
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, [
 			'X-MitsContextKey: '.$this->ReadAttributeString("AuthToken")
 		]);

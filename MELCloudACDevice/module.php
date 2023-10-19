@@ -230,14 +230,14 @@ class MELCloudACDevice extends IPSModule {
 		$this->SetValue("VaneVertical", $dev->VaneVertical);
 		$this->SetValue("VaneHorizontal", $dev->VaneHorizontal);
 
-		$this->SetTimerInterval("UpdatePropertiesTimer", 300000);
+		$this->SetTimerInterval("UpdateTimer", 300000);
 	}
 
 	/**
 	 * Set AC offline -> will force reestablish session
 	 */
 	public function SetOffline(){
-		$this->SetTimerInterval("UpdatePropertiesTimer", 0);
+		$this->SetTimerInterval("UpdateTimer", 0);
 		$this->LogMessage(IPS_GetLocation($this->insId)." now offline.", KL_WARNING);
 		$this->SetTimerInterval("OfflineTimer", 0);
 		$this->SetJSONBuffer('Registered', false);
@@ -269,6 +269,8 @@ class MELCloudACDevice extends IPSModule {
 		$result = $this->SendDataToParent($data_string);
 
 		$jsonData = json_decode($result);
+
+		$this->SendDebug("GetDevice", "Result: ".$result, 0);
 
 		return $jsonData;
     }
