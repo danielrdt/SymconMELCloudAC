@@ -101,7 +101,7 @@ class MELCloudACSplitter extends IPSModule {
 
 		$resData = json_decode($result);
 
-		if(property_exists($resData, 'ErrorId')){
+		if(property_exists($resData, 'ErrorId') && !is_null($resData->ErrorId)){
 			switch($resData->ErrorId){
 				case 'Invalid email or password':
 					$this->SetStatus(201);
@@ -115,7 +115,6 @@ class MELCloudACSplitter extends IPSModule {
 			$this->WriteAttributeString("AuthToken", "");
 			$this->WriteAttributeInteger("TokenExpire", 0);
 			$this->WriteAttributeInteger("LastSignIn", 0);
-			//$this->SetTimerInterval("RefreshTokenTimer", 0);
 			return;
 		}
 
