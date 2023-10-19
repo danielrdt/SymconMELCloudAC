@@ -251,12 +251,12 @@ class MELCloudACSplitter extends IPSModule {
 					case 'SetDevice':
 						return $this->SetDevice(
 							$json->DeviceId, 
-							isset($json->Power) = $json->Power : null,
-							isset($json->OperationMode) = $json->OperationMode : null,
-							isset($json->Temperature) = $json->Temperature : null,
-							isset($json->FanSpeed) = $json->FanSpeed : null,
-							isset($json->VaneVertical) = $json->VaneVertical : null,
-							isset($json->VaneHorizontal) = $json->VaneHorizontal : null);
+							isset($json->Power) ? $json->Power : null,
+							isset($json->OperationMode) ? $json->OperationMode : null,
+							isset($json->Temperature) ? $json->Temperature : null,
+							isset($json->FanSpeed) ? $json->FanSpeed : null,
+							isset($json->VaneVertical) ? $json->VaneVertical : null,
+							isset($json->VaneHorizontal) ? $json->VaneHorizontal : null);
 
 					case 'GetDevices':
 						return $this->GetDevices();			
