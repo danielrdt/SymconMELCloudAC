@@ -194,12 +194,12 @@ class MELCloudACSplitter extends IPSModule {
 		}
 
 		$effective = 0x0;
-		if(is_null($power)){ $effective |= 0x1; }
-		if(is_null($operationMode)){ $effective |= 0x2; }
-		if(is_null($temperature)){ $effective |= 0x4; }
-		if(is_null($fanSpeed)){ $effective |= 0x8; }
-		if(is_null($vaneVertical)){ $effective |= 0x10; }
-		if(is_null($vaneHorizontal)){ $effective |= 0x100; }
+		if(!is_null($power)){ $effective |= 0x1; }
+		if(!is_null($operationMode)){ $effective |= 0x2; }
+		if(!is_null($temperature)){ $effective |= 0x4; }
+		if(!is_null($fanSpeed)){ $effective |= 0x8; }
+		if(!is_null($vaneVertical)){ $effective |= 0x10; }
+		if(!is_null($vaneHorizontal)){ $effective |= 0x100; }
 
 		$ch = curl_init("https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAta");
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
