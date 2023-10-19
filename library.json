@@ -1,0 +1,13 @@
+{
+  "id": "{32243E2A-8F91-764D-ED27-C74E80B84879}",
+  "author": "Daniel Richardt",
+  "name": "SymconMELCloudAC",
+  "url": "www.richardt.me",
+  "compatibility": {
+    "version": "5.1",
+    "date": 1491343200
+  },
+  "version": "1.0",
+  "build": 0,
+  "date": 0
+}

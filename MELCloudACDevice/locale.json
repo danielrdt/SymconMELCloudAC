@@ -1,0 +1,38 @@
+{
+	"translations": {
+		"de": {
+				 "f_temp_in": "Ist-Temperatur",
+				 "t_temp": "Soll-Temperatur",
+				 "t_power": "Betrieb",
+				 "t_backlight": "Display",
+				 "t_eco": "ECO-Mode",
+				 "t_fan_leftright": "Horizontal Swing",
+				 "t_fan_mute": "Quiet Mode",
+				 "t_fan_power": "Vertikal Swing",
+				 "t_fan_speed": "Lüfter Geschwindigkeit",
+				 "t_work_mode": "Betriebsmodus",
+				 "fanOnly": "Nur Lüfter",
+				 "heating": "Heizen",
+				 "cooling": "Kühlen",
+				 "drying": "Trocknen",
+				 "auto": "Automatik",
+				 "Cloud not connected": "Cloud nicht verbunden",
+				 "LocalAddress": "lokale IP/Hostname",
+				 "LocalAddressLabel": "Lokale Symcon Addresse (IP/Host erreichbar von AC)",
+				 "RoomTemperature": "Raumtemperatur",
+				 "RoomTemperatureOverride": "Raumtemperatur (AC Sensor wenn nicht ausgewählt)",
+				 "OutsideTemperature": "Aussentemperatur",
+				 "PresenceVariable": "Präsenz",
+				 "OnHysteresis": "Hysterese für Einschalten",
+				 "OffHysteresis": "Hysterese für Ausschalten",
+				 "OutsideMinimumTemperature": "Minimale Aussentemperatur",
+				 "PresenceTrailing": "Präsenz Nachlauf",
+				 "AutoRoomTemperature": "Raumtemperatur Automatik",
+				 "AutoOutsideTemperature": "Aussentemperatur Automatik",
+				 "AutoPresence": "Präsenz Automatik",
+				 "AutoCooling": "Kühlung Automatik",
+				 "TargetTemperature": "Auto-Soll-Temperatur",
+				"swing": "Swing"
+		}
+	}
+}

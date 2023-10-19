@@ -1,0 +1,19 @@
+{
+  "id": "{A0D2B115-36FD-ED99-7D09-85DB842A968B}",
+  "name": "MELCloudACSplitter",
+  "type": 2,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "Mitsubishi Electric Cloud"
+  ],
+  "parentRequirements": [],
+  "childRequirements": [
+    "{1243EA9F-1F7F-A68C-AAB0-5FC17AA7FABB}",
+    "{16E08FC7-FB7E-E8E4-3473-4A9D772C1482}"
+  ],
+  "implemented": [
+    "{3E126AF2-7CFE-0527-1DD7-13730E1706D4}",
+    "{3E9CB080-0C40-FBD3-3D32-7A23917984A4}"
+  ],
+  "prefix": "MELCLOUDACSPLIT"
+}

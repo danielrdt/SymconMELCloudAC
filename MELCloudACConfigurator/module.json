@@ -1,0 +1,13 @@
+{
+  "id": "{4A8FB964-3062-7CD8-A472-0B3549A73E1C}",
+  "name": "MELCloudACConfigurator",
+  "type": 4,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "MELCloud Configurator"
+  ],
+  "parentRequirements": [ "{3E126AF2-7CFE-0527-1DD7-13730E1706D4}" ],
+  "childRequirements": [],
+  "implemented": [ "{1243EA9F-1F7F-A68C-AAB0-5FC17AA7FABB}" ],
+  "prefix": "MELCLOUDACCONF"
+}

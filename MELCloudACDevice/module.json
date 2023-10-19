@@ -1,0 +1,13 @@
+{
+  "id": "{4A8FB964-3062-7CD8-A472-0B3549A73E1C}",
+  "name": "MELCloudACDevice",
+  "type": 3,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "MELCloud Device"
+  ],
+  "parentRequirements": [ "{3E9CB080-0C40-FBD3-3D32-7A23917984A4}" ],
+  "childRequirements": [],
+  "implemented": [ "{16E08FC7-FB7E-E8E4-3473-4A9D772C1482}" ],
+  "prefix": "MELCLOUDAC"
+}
