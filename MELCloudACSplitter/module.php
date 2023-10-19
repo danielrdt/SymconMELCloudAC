@@ -81,7 +81,7 @@ class MELCloudACSplitter extends IPSModule {
 			"Password" => $this->ReadPropertyString("Password"),
 			"Language" => 4,
 			"AppVersion" => "1.28.1.0",
-			"Persist" => true;
+			"Persist" => true
 			);
 		$data_string = json_encode($data);
 
