@@ -64,11 +64,11 @@ class MELCloudACConfigurator extends IPSModule {
 				    'name'  => $location->Name." ".$device->DeviceName,
 				    'mac'	=> $device->MacAddress,
                     'create' => [
-                        'moduleID'      => '{4A8FB964-3062-7CD8-A472-0B3549A73E1C}',
+                        'moduleID'      => '{AD9B6866-55F4-748D-A2DC-CD9B9637957A}',
                         'configuration' => ['DeviceId' => $device->DeviceID, 'BuildingId' => $location->ID]
                     ]
                 ];
-                $InstanzID = $this->SearchDeviceInstance($SplitterID, '{4A8FB964-3062-7CD8-A472-0B3549A73E1C}', $device->DeviceID);
+                $InstanzID = $this->SearchDeviceInstance($SplitterID, '{AD9B6866-55F4-748D-A2DC-CD9B9637957A}', $device->DeviceID);
                 if ($InstanzID == false) {
                     $Value['location'] = '';
                 } else {
