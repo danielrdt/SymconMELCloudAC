@@ -189,7 +189,7 @@ class MELCloudACDevice extends IPSModule {
 	public function RequestAction($Ident, $Value, $Automatic = false) {
 		$splitter = $this->GetSplitter();
 		$ins = IPS_GetInstance($splitter);
-		if(!$this->GetJSONBuffer('Registered') && $ins['InstanceStatus'] <> 102){
+		if($ins['InstanceStatus'] <> 102){
 			$this->LogMessage("Could not send command because cloud not connected", KL_ERROR);
 			throw new Exception($this->Translate("Cloud not connected"));
 		}
@@ -240,7 +240,6 @@ class MELCloudACDevice extends IPSModule {
 		$this->SetTimerInterval("UpdateTimer", 0);
 		$this->LogMessage(IPS_GetLocation($this->insId)." now offline.", KL_WARNING);
 		$this->SetTimerInterval("OfflineTimer", 0);
-		$this->SetJSONBuffer('Registered', false);
 	}
 
 	/**

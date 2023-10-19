@@ -113,7 +113,7 @@ class MELCloudACConfigurator extends IPSModule {
         return $SplitterID;
 	}
 	
-    private function SearchDeviceInstance(int $SplitterID, string $ModuleID, int $DeviceKey)
+    private function SearchDeviceInstance(int $SplitterID, string $ModuleID, int $DeviceId)
     {
         $InstanceIDs = IPS_GetInstanceListByModuleID($ModuleID);
         foreach ($InstanceIDs as $InstanceID) {
