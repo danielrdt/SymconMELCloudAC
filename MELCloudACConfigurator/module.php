@@ -55,6 +55,8 @@ class MELCloudACConfigurator extends IPSModule {
 		}
 
 		$data = $this->GetDevices();
+
+        $Values = array();
 		
         foreach ($data as $location) {
             foreach ($location->Structure->Devices as $device){

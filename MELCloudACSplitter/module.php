@@ -134,7 +134,7 @@ class MELCloudACSplitter extends IPSModule {
 	private function GetDevices(){
 		$expire = $this->ReadAttributeInteger("TokenExpire");
 		if($expire == 0 || time() > $expire){
-			SignIn();
+			$this->SignIn();
 		}
 
 		if($this->GetStatus() <> 102){
@@ -157,7 +157,7 @@ class MELCloudACSplitter extends IPSModule {
 	private function GetDevice($DeviceId, $BuildingId){
 		$expire = $this->ReadAttributeInteger("TokenExpire");
 		if($expire == 0 || time() > $expire){
-			SignIn();
+			$this->SignIn();
 		}
 
 		if($this->GetStatus() <> 102){
@@ -188,7 +188,7 @@ class MELCloudACSplitter extends IPSModule {
 								$vaneHorizontal = null){
 		$expire = $this->ReadAttributeInteger("TokenExpire");
 		if($expire == 0 || time() > $expire){
-			SignIn();
+			$this->SignIn();
 		}
 
 		if($this->GetStatus() <> 102){
