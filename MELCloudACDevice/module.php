@@ -228,6 +228,7 @@ class MELCloudACDevice extends IPSModule {
 
 		$lastComm = new DateTime($dev->LastCommunication, new DateTimeZone("Etc/UTC"));
 		if($lastComm->getTimestamp() > $this->ReadAttributeInteger("LastSet")){
+			$this->SendDebug("Update", "Last communiction was at ".$lastComm->format('Y-m-d H:i:s')." (".$lastComm->getTimestamp()." > ".$this->ReadAttributeInteger("LastSet").")", 0);
 			$this->SetValue("Power", $dev->Power);
 			$this->SetValue("RoomTemperature", $dev->RoomTemperature);
 			$this->SetValue("Temperature", $dev->SetTemperature);
