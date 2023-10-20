@@ -31,7 +31,7 @@ class MELCloudACDevice extends IPSModule {
 		$workModeProfile = "MELCLOUDAC.".$this->insId.".WorkMode";
 		if(!IPS_VariableProfileExists($workModeProfile)) {
 			IPS_CreateVariableProfile($workModeProfile, 1);
-			IPS_SetVariableProfileValues($workModeProfile, 0, 8, 1);
+			IPS_SetVariableProfileValues($workModeProfile, 0, 8, 0);
 			IPS_SetVariableProfileIcon($workModeProfile, "Information");
 			IPS_SetVariableProfileAssociation($workModeProfile, 7, $this->Translate("fanOnly"), "", 0xC0C0C0);
 			IPS_SetVariableProfileAssociation($workModeProfile, 1, $this->Translate("heating"), "", 0xFF0000);
@@ -43,7 +43,7 @@ class MELCloudACDevice extends IPSModule {
 		$fanSpeedProfile = "MELCLOUDAC.".$this->insId.".FanSpeed";
 		if(!IPS_VariableProfileExists($fanSpeedProfile)) {
 			IPS_CreateVariableProfile($fanSpeedProfile, 1);
-			IPS_SetVariableProfileValues($fanSpeedProfile, 0, 5, 1);
+			IPS_SetVariableProfileValues($fanSpeedProfile, 0, 5, 0);
 			IPS_SetVariableProfileIcon($fanSpeedProfile, "Ventilation");
 			IPS_SetVariableProfileAssociation($fanSpeedProfile, 0, $this->Translate("auto"), "", 0x00FF00);
 			IPS_SetVariableProfileAssociation($fanSpeedProfile, 1, "1", "", 0xC0C0C0);
@@ -56,7 +56,7 @@ class MELCloudACDevice extends IPSModule {
 		$vaneHProfile = "MELCLOUDAC.".$this->insId.".VaneHorizontal";
 		if(!IPS_VariableProfileExists($vaneHProfile)) {
 			IPS_CreateVariableProfile($vaneHProfile, 1);
-			IPS_SetVariableProfileValues($vaneHProfile, 0, 12, 1);
+			IPS_SetVariableProfileValues($vaneHProfile, 0, 12, 0);
 			IPS_SetVariableProfileIcon($vaneHProfile, "Ventilation");
 			IPS_SetVariableProfileAssociation($vaneHProfile, 0, $this->Translate("auto"), "", 0x00FF00);
 			IPS_SetVariableProfileAssociation($vaneHProfile, 1, "1", "", 0xC0C0C0);
@@ -70,7 +70,7 @@ class MELCloudACDevice extends IPSModule {
 		$vaneVProfile = "MELCLOUDAC.".$this->insId.".VaneVertical";
 		if(!IPS_VariableProfileExists($vaneVProfile)) {
 			IPS_CreateVariableProfile($vaneVProfile, 1);
-			IPS_SetVariableProfileValues($vaneVProfile, 0, 7, 1);
+			IPS_SetVariableProfileValues($vaneVProfile, 0, 7, 0);
 			IPS_SetVariableProfileIcon($vaneVProfile, "Ventilation");
 			IPS_SetVariableProfileAssociation($vaneVProfile, 0, $this->Translate("auto"), "", 0x00FF00);
 			IPS_SetVariableProfileAssociation($vaneVProfile, 1, "1", "", 0xC0C0C0);
@@ -233,7 +233,7 @@ class MELCloudACDevice extends IPSModule {
 		$nextComm = new DateTime($dev->NextCommunication, new DateTimeZone("Etc/UTC"));
 		$secondsTillNextComm = $nextComm->getTimestamp()-time();
 
-		$this->SendDebug("Update", "NextCommunication at".$nextComm->format('Y-m-d H:i:s')."; Seconds till ".$secondsTillNextComm, 0);
+		$this->SendDebug("Update", "Next communication at ".$nextComm->format('Y-m-d H:i:s')."; Seconds till ".$secondsTillNextComm, 0);
 		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 5 ? 60000 : (($secondsTillNextComm + 10) * 1000));
 	}
 
