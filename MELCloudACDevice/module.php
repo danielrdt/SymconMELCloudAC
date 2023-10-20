@@ -205,6 +205,7 @@ class MELCloudACDevice extends IPSModule {
 		$data_string = json_encode($data);
 		$result = $this->SendDataToParent($data_string);
 
+		$this->SendDebug("RequestAction", "Set at ".time()." -> ".$data_string, 0);
 		$this->WriteAttributeInteger("LastSet", time());
 
 		$this->SetValue($Ident, $Value);
@@ -227,8 +228,10 @@ class MELCloudACDevice extends IPSModule {
 		$dev = $this->GetDevice();
 
 		$lastComm = new DateTime($dev->LastCommunication, new DateTimeZone("Etc/UTC"));
-		if($lastComm->getTimestamp() > $this->ReadAttributeInteger("LastSet")){
-			$this->SendDebug("Update", "Last communiction was at ".$lastComm->format('Y-m-d H:i:s')." (".$lastComm->getTimestamp()." > ".$this->ReadAttributeInteger("LastSet").")", 0);
+		$lastSet = new DateTime();
+		$lastSet->setTimestamp($this->ReadAttributeInteger("LastSet"));
+		if($lastComm->getTimestamp() > ($this->ReadAttributeInteger("LastSet") + 10)){
+			$this->SendDebug("Update", "Last communication was at ".$lastComm->format('Y-m-d H:i:s')." and last set at ".$lastSet->format('Y-m-d H:i:s')." so updating data", 0);
 			$this->SetValue("Power", $dev->Power);
 			$this->SetValue("RoomTemperature", $dev->RoomTemperature);
 			$this->SetValue("Temperature", $dev->SetTemperature);
@@ -237,13 +240,13 @@ class MELCloudACDevice extends IPSModule {
 			$this->SetValue("VaneVertical", $dev->VaneVertical);
 			$this->SetValue("VaneHorizontal", $dev->VaneHorizontal);
 		}else{
-			$this->SendDebug("Update", "Ignoring update because last communiction ".$lastComm->format('Y-m-d H:i:s')." was earlier than last set at ".$this->ReadAttributeInteger("LastSet"), 0);
+			$this->SendDebug("Update", "Ignoring update because last communiction ".$lastComm->format('Y-m-d H:i:s')." was earlier than last set at ".$lastSet->format('Y-m-d H:i:s')." + 10sec", 0);
 		}
 
 		$nextComm = new DateTime($dev->NextCommunication, new DateTimeZone("Etc/UTC"));
 		$secondsTillNextComm = $nextComm->getTimestamp()-time();
 
-		$this->SendDebug("Update", "Next communication at ".$nextComm->format('Y-m-d H:i:s')."; Seconds till ".$secondsTillNextComm, 0);
+		$this->SendDebug("Update", "Next communication at ".$nextComm->format('Y-m-d H:i:s')."; Await communication in ".$secondsTillNextComm." seconds", 0);
 		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 60 ? 60000 : (($secondsTillNextComm + 10) * 1000));
 	}
 
