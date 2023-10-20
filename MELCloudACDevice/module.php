@@ -89,6 +89,8 @@ class MELCloudACDevice extends IPSModule {
 		$this->RegisterVariableInteger("VaneVertical", $this->Translate("VaneVertical"), $vaneVProfile, 50);
 		$this->RegisterVariableInteger("VaneHorizontal", $this->Translate("VaneHorizontal"), $vaneHProfile, 60);
 
+		$this->RegisterAttributeInteger("LastSet", 0);
+
 		//Timer
 		$this->RegisterTimer("UpdateTimer", 0, 'MELCLOUDAC_Update($_IPS[\'TARGET\']);');
 
@@ -203,6 +205,8 @@ class MELCloudACDevice extends IPSModule {
 		$data_string = json_encode($data);
 		$result = $this->SendDataToParent($data_string);
 
+		$this->WriteAttributeInteger("LastSet", time());
+
 		$this->SetValue($Ident, $Value);
 	}
 
@@ -222,28 +226,24 @@ class MELCloudACDevice extends IPSModule {
 	public function Update(){
 		$dev = $this->GetDevice();
 
-		$this->SetValue("Power", $dev->Power);
-		$this->SetValue("RoomTemperature", $dev->RoomTemperature);
-		$this->SetValue("Temperature", $dev->SetTemperature);
-		$this->SetValue("OperationMode", $dev->OperationMode);
-		$this->SetValue("FanSpeed", $dev->SetFanSpeed);
-		$this->SetValue("VaneVertical", $dev->VaneVertical);
-		$this->SetValue("VaneHorizontal", $dev->VaneHorizontal);
+		$lastComm = new DateTime($dev->LastCommunication, new DateTimeZone("Etc/UTC"));
+		if($lastComm->getTimestamp() > $this->ReadAttributeInteger("LastSet")){
+			$this->SetValue("Power", $dev->Power);
+			$this->SetValue("RoomTemperature", $dev->RoomTemperature);
+			$this->SetValue("Temperature", $dev->SetTemperature);
+			$this->SetValue("OperationMode", $dev->OperationMode);
+			$this->SetValue("FanSpeed", $dev->SetFanSpeed);
+			$this->SetValue("VaneVertical", $dev->VaneVertical);
+			$this->SetValue("VaneHorizontal", $dev->VaneHorizontal);
+		}else{
+			$this->SendDebug("Update", "Ignoring update because last communiction ".$lastComm->format('Y-m-d H:i:s')." was earlier than last set at ".$this->ReadAttributeInteger("LastSet"), 0);
+		}
 
 		$nextComm = new DateTime($dev->NextCommunication, new DateTimeZone("Etc/UTC"));
 		$secondsTillNextComm = $nextComm->getTimestamp()-time();
 
 		$this->SendDebug("Update", "Next communication at ".$nextComm->format('Y-m-d H:i:s')."; Seconds till ".$secondsTillNextComm, 0);
-		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 5 ? 60000 : (($secondsTillNextComm + 10) * 1000));
-	}
-
-	/**
-	 * Set AC offline -> will force reestablish session
-	 */
-	public function SetOffline(){
-		$this->SetTimerInterval("UpdateTimer", 0);
-		$this->LogMessage(IPS_GetLocation($this->insId)." now offline.", KL_WARNING);
-		$this->SetTimerInterval("OfflineTimer", 0);
+		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 60 ? 60000 : (($secondsTillNextComm + 10) * 1000));
 	}
 
 	/**
