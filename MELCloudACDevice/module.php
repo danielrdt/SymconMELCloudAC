@@ -233,7 +233,7 @@ class MELCloudACDevice extends IPSModule {
 		$nextComm = new DateTime($dev->NextCommunication, new DateTimeZone("Etc/UTC"));
 		$secondsTillNextComm = $nextComm->getTimestamp()-time();
 
-		$this->SendDebug("Update", "NextCommunication at".$nextComm."; Seconds till ".$secondsTillNextComm, 0);
+		$this->SendDebug("Update", "NextCommunication at".$nextComm->format('Y-m-d H:i:s')."; Seconds till ".$secondsTillNextComm, 0);
 		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 5 ? 60000 : (($secondsTillNextComm + 10) * 1000));
 	}
 
