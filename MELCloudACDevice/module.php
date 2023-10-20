@@ -230,12 +230,11 @@ class MELCloudACDevice extends IPSModule {
 		$this->SetValue("VaneVertical", $dev->VaneVertical);
 		$this->SetValue("VaneHorizontal", $dev->VaneHorizontal);
 
-		$nextComm = strtotime($dev->NextCommunication);
-		$secondsTillNextComm = $nextComm - time();
+		$nextComm = new DateTime($dev->NextCommunication, new DateTimeZone("Etc/UTC"));
+		$secondsTillNextComm = $nextComm->getTimestamp()-time();
 
-		$this->SendDebug("Update", "NextCommunication at".$nextComm." Now ".time()." Seconds till ".$secondsTillNextComm, 0);
-
-		$this->SetTimerInterval("UpdateTimer", 300000);
+		$this->SendDebug("Update", "NextCommunication at".$nextComm."; Seconds till ".$secondsTillNextComm, 0);
+		$this->SetTimerInterval("UpdateTimer", $secondsTillNextComm < 5 ? 60000 : (($secondsTillNextComm + 10) * 1000));
 	}
 
 	/**
