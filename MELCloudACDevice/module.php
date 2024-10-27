@@ -89,6 +89,8 @@ class MELCloudACDevice extends IPSModule {
 		$this->RegisterVariableInteger("VaneVertical", $this->Translate("VaneVertical"), $vaneVProfile, 50);
 		$this->RegisterVariableInteger("VaneHorizontal", $this->Translate("VaneHorizontal"), $vaneHProfile, 60);
 
+		$this->RegisterPropertyFloat("Offset", 0.0);
+
 		$this->RegisterAttributeInteger("LastSet", 0);
 
 		//Timer
@@ -196,6 +198,13 @@ class MELCloudACDevice extends IPSModule {
 			throw new Exception($this->Translate("Cloud not connected"));
 		}
 
+		if ($Ident == "Temperature"){
+			$offset = $this->ReadPropertyFloat('Offset');
+			if ($offset <> 0) {
+				$Value -= $offset;
+			}
+		}
+
 		$data = array(
 			"DataID" => "{3E9CB080-0C40-FBD3-3D32-7A23917984A4}",
 			"command" => "SetDevice",
@@ -215,7 +224,8 @@ class MELCloudACDevice extends IPSModule {
 		$form = '{
 			"elements":
 			[
-				
+				{ "type": "Label", "caption": "OffsetLabel" },
+				{ "type": "NumberSpinner", "name": "Offset", "caption": "Offset", "digits": 1, "suffix": "°C" }
 			]
 		}';
 		return $form;
@@ -233,8 +243,9 @@ class MELCloudACDevice extends IPSModule {
 		if($lastComm->getTimestamp() > ($this->ReadAttributeInteger("LastSet") + 10)){
 			$this->SendDebug("Update", "Last communication was at ".$lastComm->format('Y-m-d H:i:s')." and last set at ".$lastSet->format('Y-m-d H:i:s')." so updating data", 0);
 			$this->SetValue("Power", $dev->Power);
-			$this->SetValue("RoomTemperature", $dev->RoomTemperature);
-			$this->SetValue("Temperature", $dev->SetTemperature);
+			$offset = $this->ReadPropertyFloat('Offset');
+			$this->SetValue("RoomTemperature", $dev->RoomTemperature + $offset);
+			$this->SetValue("Temperature", $dev->SetTemperature + $offset);
 			$this->SetValue("OperationMode", $dev->OperationMode);
 			$this->SetValue("FanSpeed", $dev->SetFanSpeed);
 			$this->SetValue("VaneVertical", $dev->VaneVertical);
