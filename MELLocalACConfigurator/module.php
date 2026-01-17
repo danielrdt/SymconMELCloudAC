@@ -19,7 +19,7 @@ class MELLocalACConfigurator extends IPSModule {
         parent::Create();
 
         // Connect to parent splitter
-        $this->ConnectParent("{D1E8C5F4-6A3B-9C72-4E5D-7B9A1F3E2C8D}");
+        $this->ConnectParent("{B8E7A5D2-4F3C-8A91-2E6D-9C1B7F4E8A3D}");
     }
 
     public function ApplyChanges() {
