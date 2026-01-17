@@ -232,7 +232,11 @@ class MELLocalACDevice extends IPSModule {
 
         if (isset($state['error'])) {
             $this->LogMessage("Update Error: " . $state['error'], KL_ERROR);
-            $this->SetTimerInterval("UpdateTimer", 60000); // Retry in 60 seconds
+            if ($this->ReadPropertyInteger("UpdateInterval") > 0) {
+                $this->SetTimerInterval("UpdateTimer", $this->ReadPropertyInteger("UpdateInterval") * 1000);
+            } else {
+                $this->SetTimerInterval("UpdateTimer", 0);
+            }
             return;
         }
 
@@ -272,7 +276,11 @@ class MELLocalACDevice extends IPSModule {
         }
 
         // Reset timer to normal interval
-        $this->SetTimerInterval("UpdateTimer", 60000); // 60 seconds
+        if ($this->ReadPropertyInteger("UpdateInterval") > 0) {
+            $this->SetTimerInterval("UpdateTimer", $this->ReadPropertyInteger("UpdateInterval") * 1000);
+        } else {
+            $this->SetTimerInterval("UpdateTimer", 0);
+        }
     }
 
     /**
