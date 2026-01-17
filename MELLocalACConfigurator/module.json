@@ -7,11 +7,11 @@
     "Local AC Configurator"
   ],
   "parentRequirements": [
-    "{D1E8C5F4-6A3B-9C72-4E5D-7B9A1F3E2C8D}"
+    "{9F91FA3F-C4B9-0A96-3D07-C8C44DFEABB6}"
   ],
   "childRequirements": [],
   "implemented": [
-    "{1243EA9F-1F7F-A68C-AAB0-5FC17AA7FABB}"
+    "{B714B2C3-4BEF-757F-F90A-7921ADEAA9FA}"
   ],
   "prefix": "MELLOCALACCONF"
 }
