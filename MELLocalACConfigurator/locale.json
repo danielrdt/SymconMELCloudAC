@@ -1,0 +1,16 @@
+{
+  "translations": {
+    "de": {
+      "Manual Device Configuration": "Manuelle Geräte-Konfiguration",
+      "Enter IP addresses of your Mitsubishi AC devices to create instances.": "Geben Sie die IP-Adressen Ihrer Mitsubishi AC-Geräte ein, um Instanzen zu erstellen.",
+      "Available Devices": "Verfügbare Geräte",
+      "Device Name": "Gerätename",
+      "Device IP Address": "Geräte IP-Adresse",
+      "Port": "Port",
+      "Location": "Standort",
+      "New Device": "Neues Gerät",
+      "Not connected to Splitter.": "Nicht mit Splitter verbunden.",
+      "Instance has no active parent.": "Instanz hat keinen aktiven Parent."
+    }
+  }
+}

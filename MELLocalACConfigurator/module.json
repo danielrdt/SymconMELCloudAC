@@ -1,0 +1,15 @@
+{
+  "id": "{B7E2F8A9-4C6D-1E3A-9B5F-2D8C7A4E6F1B}",
+  "name": "MELLocalACConfigurator",
+  "type": 1,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "Local AC Configurator"
+  ],
+  "parentRequirements": [
+    "{D1E8C5F4-6A3B-9C72-4E5D-7B9A1F3E2C8D}"
+  ],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "MELLOCALACCONF"
+}
