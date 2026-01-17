@@ -3,12 +3,12 @@
 require_once(__DIR__ . '/../libs/MitsubishiParser.php');
 
 /**
- * MELMELLOCALACDEVice
+ * MELLocalACDevice
  *
  * Device module for local Mitsubishi AC control
  * Controls a single AC unit via local network
  */
-class MELMELLOCALACDEVice extends IPSModule {
+class MELLocalACDevice extends IPSModule {
 
     private $insId = 0;
 
