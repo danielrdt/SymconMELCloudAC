@@ -1,0 +1,15 @@
+{
+  "id": "{C9F6B4E3-5D2A-7B81-3F4E-8A2C6D9E1B5F}",
+  "name": "MELLocalACDevice",
+  "type": 3,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "Local AC Device"
+  ],
+  "parentRequirements": [
+    "{D1E8C5F4-6A3B-9C72-4E5D-7B9A1F3E2C8D}"
+  ],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "MELLOCALACDEV"
+}

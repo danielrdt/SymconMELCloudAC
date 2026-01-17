@@ -1,0 +1,28 @@
+{
+  "translations": {
+    "de": {
+      "Local Mitsubishi AC Device": "Lokales Mitsubishi AC Gerät",
+      "Device IP Address": "Geräte IP-Adresse",
+      "Device Port": "Geräte Port",
+      "Update Interval (seconds)": "Update-Intervall (Sekunden)",
+      "Update Status": "Status aktualisieren",
+      "t_power": "Ein/Aus",
+      "t_work_mode": "Betriebsmodus",
+      "t_temp": "Solltemperatur",
+      "f_temp_in": "Raumtemperatur",
+      "f_temp_out": "Außentemperatur",
+      "t_fan_speed": "Lüftergeschwindigkeit",
+      "VaneVertical": "Lamellen Vertikal",
+      "VaneHorizontal": "Lamellen Horizontal",
+      "PowerWatt": "Leistung",
+      "Operating": "In Betrieb",
+      "t_energy_consumption": "Energieverbrauch",
+      "fanOnly": "Nur Lüfter",
+      "heating": "Heizen",
+      "cooling": "Kühlen",
+      "drying": "Trocknen",
+      "auto": "Automatik",
+      "swing": "Schwenken"
+    }
+  }
+}

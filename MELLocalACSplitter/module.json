@@ -1,0 +1,17 @@
+{
+  "id": "{B8E7A5D2-4F3C-8A91-2E6D-9C1B7F4E8A3D}",
+  "name": "MELLocalACSplitter",
+  "type": 2,
+  "vendor": "Mitsubishi Electric",
+  "aliases": [
+    "Mitsubishi Electric Local Splitter"
+  ],
+  "parentRequirements": [],
+  "childRequirements": [
+    "{C9F6B4E3-5D2A-7B81-3F4E-8A2C6D9E1B5F}"
+  ],
+  "implemented": [
+    "{D1E8C5F4-6A3B-9C72-4E5D-7B9A1F3E2C8D}"
+  ],
+  "prefix": "MELLOCALAC"
+}
